@@ -9,10 +9,10 @@
       <a href="/users/{{ user.id }}/edit" class="btn btn-primary">edit</a>
     </div>
   </div>
-  <div class="row border p-3">{{ user.Comments.length }} 已評論餐廳</div>
-  {{#if user.Comments.length}}
+  <div class="row border p-3">{{ user.commentedRest.length }} 已評論餐廳</div>
+  {{#if user.commentedRest.length}}
     <div class="row bg-white border p-3">
-      {{#each user.Comments}}
+      {{#each user.commentedRest}}
         <div class="col-1 mr-1">
           <a href="/restaurants/{{ this.Restaurant.id }}">
             <img src="{{ this.Restaurant.image }}" alt="" class="img-fluid">

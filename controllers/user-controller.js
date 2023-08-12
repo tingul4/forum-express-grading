@@ -47,7 +47,14 @@ const userController = {
     })
       .then(user => {
         if (!user) throw new Error("User didn't exist!")
-        res.render('users/profile', { user: user.toJSON() })
+        const commentedRest = []
+        user.toJSON().Comments.forEach(comment => {
+          const isCommented = rest => rest.restaurantId === comment.restaurantId
+          if (commentedRest.some(isCommented)) return
+          commentedRest.push(comment)
+        })
+        user = { ...user.toJSON(), commentedRest }
+        res.render('users/profile', { user })
       })
       .catch(err => next(err))
   },
